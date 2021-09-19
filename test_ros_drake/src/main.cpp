@@ -4,13 +4,16 @@
 
 int main ( int argc, char** argv )
 {
-	ros::init(argc, argv, "chapter_01");
+    ros::init(argc, argv, "test_ros_drake");
 
     drake::RandomGenerator rg;
     ros::NodeHandle nh;
 
-    std::cout << "Min: " << rg.min << ", Max: " << rg.max << std::endl;
-    std::cout << "Hello World!" << std::endl;
+    double r;
+    nh.getParam("rate", r);
 
-    while(true) { }
+    std::cout << "Hello World!" << std::endl;
+    std::cout << "drake::RandomGenerator min: " << rg.min << ", drake::RandomGenerator max: " << rg.max << std::endl;
+    std::cout << "ros::NodeHandle rate: " << r << std::endl;
+    
 }
