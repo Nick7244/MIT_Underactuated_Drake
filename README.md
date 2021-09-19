@@ -1,30 +1,16 @@
-# Instructions for downloading and using Drake with catkin pakage + ROS
+# Instructions for downloading and using Drake + ROS with catkin pakage
 
 1. Follow the instructions at https://underactuated.mit.edu/drake.html#section3 to download the drake binaries
 
-2. Setup vscode settings.json (MIGHT NOT ACTUALLY NEED THIS):
+2. Setup vscode c_cpp_properties.json (i.e. C/C++ extension):
 
-    "C_Cpp.intelliSenseEngineFallback": "Enabled"
+    Add the following to the include path for intellisense to work:
 
-3. Setup vscode c_cpp_properties.json:
+        "/opt/ros/melodic/include/**",
+        "/usr/include/**",
+        "/opt/drake/include"
 
-    "configurations": [
-        {
-            "browse": {
-                "databaseFilename": "",
-                "limitSymbolsToIncludedHeaders": true
-            },
-            "includePath": [
-                "/opt/ros/melodic/include/**",
-                "/usr/include/**",
-                "/opt/drake/include"
-            ],
-            "name": "ROS",
-            "configurationProvider": "ms-vscode.cmake-tools"
-        }
-    ]
-
-4. Cmake file:
+3. CMake configuration:
 
     find_package(drake CONFIG REQUIRED PATHS /opt/drake)
 
@@ -32,3 +18,5 @@
         ${catkin_LIBRARIES}
         drake::drake
     )
+
+*See the test_ros_drake package for an example of a node that can find ROS & Drake libs*
